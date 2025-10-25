@@ -26,15 +26,17 @@ public class AppointmentServiceImpl implements AppointmentService {
     }
 
     @Override
-    public AppointmentRequestDto createAppointment(AppointmentRequestDto dto) {
+    public AppointmentResponseDto createAppointment(AppointmentRequestDto dto) {
         Patient patient = patientRepository.findById(dto.getPatientId())
                 .orElseThrow(() -> new RuntimeException("Patient not found"));
 
         Appointment appointment = AppointmentMapper.toEntity(dto, patient);
-        appointmentRepository.save(appointment);
+        Appointment savedAppointment = appointmentRepository.save(appointment);
 
-        return dto;
+        return AppointmentMapper.toResponseDto(savedAppointment);
     }
+
+
 
     @Override
     public AppointmentResponseDto updateAppointment(Long id, AppointmentResponseDto dto) {

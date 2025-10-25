@@ -6,7 +6,7 @@ import com.pathshala.payload.response.AppointmentResponseDto;
 import java.util.List;
 
 public interface AppointmentService {
-    AppointmentRequestDto createAppointment(AppointmentRequestDto dto);
+    AppointmentResponseDto  createAppointment(AppointmentRequestDto dto);
     AppointmentResponseDto updateAppointment(Long id, AppointmentResponseDto dto);
     List<AppointmentResponseDto> getAllAppointments();
     AppointmentResponseDto getAppointmentById(Long id); // নতুন মেথড
